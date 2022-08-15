@@ -16,6 +16,12 @@ class DashboardBloc
     on<AddProjectEvent>(
           (event, emit) => _onAddProject(event, emit),
     );
+    on<DelProjectEvent>(
+          (event, emit) => _onDelProject(event, emit),
+    );
+    on<ChangeProjectNameEvent>(
+          (event, emit) => _onChangeProjectName(event, emit),
+    );
   }
 
   void _onGetInfo(GetInfoEvent event,
@@ -33,9 +39,31 @@ class DashboardBloc
       Emitter<DashboardScreenState> emit) async {
 
     await _projectsRepository.addProject(event.name);
+    await _updateProjects(emit);
+  }
+
+  void _onDelProject(DelProjectEvent event,
+      Emitter<DashboardScreenState> emit) async {
+    await _projectsRepository.delProject(event.index);
+    await _updateProjects(emit);
+  }
+
+  void _onChangeProjectName(ChangeProjectNameEvent event,
+      Emitter<DashboardScreenState> emit) async {
+    await _projectsRepository.changeProjectName(
+      event.index,
+      event.name
+    );
+    await _updateProjects(emit);
+  }
+
+  Future<void> _updateProjects(Emitter<DashboardScreenState> emit) async {
     var projects = await _projectsRepository.getProjects();
     emit(state.data.copyWith(
       projects: projects,
     ));
   }
+
+
+
 }

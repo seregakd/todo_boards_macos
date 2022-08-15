@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'src/core/di/injection.dart';
 import 'src/data/model/local/card_model.dart';
 import 'src/data/model/local/project_model.dart';
+import 'src/presentation/screens/dashboard/bloc/dashboard_bloc.dart';
+import 'src/presentation/screens/dashboard/bloc/dashboard_models.dart';
 import 'src/presentation/screens/dashboard/dashboard_screen.dart';
 
 void main() async {
@@ -24,7 +27,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MacosThemeData.light(),
       darkTheme: MacosThemeData.dark(),
-      home: const DashboardScreen(),
+      home: BlocProvider(
+        create: (_) => DashboardBloc()..add(GetInfoEvent()),
+        child: const DashboardScreen()
+      ),
     );
   }
 }
