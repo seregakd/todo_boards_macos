@@ -17,18 +17,15 @@ class ProjectModelAdapter extends TypeAdapter<ProjectModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProjectModel(
-      id: fields[0] as String,
-      name: fields[1] as String,
+      name: fields[0] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProjectModel obj) {
     writer
-      ..writeByte(2)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
+      ..writeByte(0)
       ..write(obj.name);
   }
 

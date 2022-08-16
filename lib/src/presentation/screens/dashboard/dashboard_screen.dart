@@ -17,7 +17,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int _projectIndex = 0;
   ScrollController controller1 = ScrollController();
   ScrollController controller2 = ScrollController();
   ScrollController controller3 = ScrollController();
@@ -52,9 +51,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
         body: MacosWindow(
-          sidebar: _sidebar(state.projects),
+          sidebar: _sidebar(state.projects, state.projectIndex),
           child: MacosScaffold(
-            toolBar: _toolBar(state.projects),
+            toolBar: _toolBar(state.projects, state.projectIndex),
             children: [
               ContentArea(
                 builder: ((context, scrollController) {
@@ -62,18 +61,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: [
                       ListCards(
                         title: 'TODO',
-                        count: 50,
+                        cards: state.cards1,
                         controller: controller1,
+                        onTapAdd: () => _addCard(
+                          projectId: state.projectIndex,
+                          categoryId: 0,
+                        ),
                       ),
                       ListCards(
                         title: 'IN PROGRESS',
-                        count: 10,
+                        cards: state.cards2,
                         controller: controller2,
+                        onTapAdd: () => _addCard(
+                          projectId: state.projectIndex,
+                          categoryId: 1,
+                        ),
                       ),
                       ListCards(
                         title: 'DONE',
-                        count: 5,
+                        cards: state.cards3,
                         controller: controller3,
+                        onTapAdd: () => _addCard(
+                          projectId: state.projectIndex,
+                          categoryId: 2,
+                        ),
                       ),
                     ],
                   );
@@ -86,7 +97,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
-  Sidebar _sidebar(List<ProjectModel> projects) {
+  Sidebar _sidebar(List<ProjectModel> projects, projectIndex) {
     return Sidebar(
       minWidth: 200,
       top: Column(
@@ -112,10 +123,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       builder: (context, scrollController) {
         return SidebarItems(
-          currentIndex: _projectIndex,
+          currentIndex: projectIndex,
           scrollController: scrollController,
           onChanged: (index) {
-            setState(() => _projectIndex = index);
+            this.context
+                .read<DashboardBloc>()
+                .add(SetProjectEvent(projectIndex: index));
           },
           items: [
             for (int i = 0; i < projects.length; i++)
@@ -147,11 +160,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  ToolBar _toolBar(List<ProjectModel> projects) {
+  ToolBar _toolBar(List<ProjectModel> projects, int projectIndex) {
     return ToolBar(
       title: Text(projects.isEmpty
           ? ''
-          : projects[_projectIndex].name), //Text(projects[_projectIndex].name),
+          : projects[projectIndex].name), //Text(projects[_projectIndex].name),
       titleWidth: 300.0,
       actions: [
         ToolBarIconButton(
@@ -162,6 +175,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           onPressed: () => _addProject(),
           showLabel: false,
         ),
+        ToolBarIconButton(
+          label: "Change",
+          icon: const MacosIcon(
+            Icons.edit,
+          ),
+          onPressed: () {
+            if (projects.isNotEmpty) {
+              _showChangeDialog(projects, projectIndex);
+            }
+          },
+          showLabel: false,
+        ),
         const ToolBarSpacer(),
         ToolBarIconButton(
           label: "Delete",
@@ -170,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           onPressed: () {
             if (projects.isNotEmpty) {
-              _showDelDialog(projects);
+              _showDelDialog(projects, projectIndex);
             }
           },
           showLabel: false,
@@ -195,7 +220,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  void _showDelDialog(List<ProjectModel> projects) {
+  void _showDelDialog(List<ProjectModel> projects, int projectIndex) {
     showMacosAlertDialog(
       context: context,
       builder: (context) => MacosAlertDialog(
@@ -211,7 +236,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .copyWith(fontWeight: FontWeight.bold),
         ),
         message: Text(
-          'Do you want to delete ${projects[_projectIndex].name}?',
+          'Do you want to delete project ${projects[projectIndex].name} with all tasks?',
           textAlign: TextAlign.center,
         ),
         horizontalActions: false,
@@ -219,12 +244,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           buttonSize: ButtonSize.large,
           onPressed: () {
             bool indexMinus = false;
-            if (_projectIndex == projects.length - 1 && _projectIndex != 0) {
-              setState(() => _projectIndex = _projectIndex - 1);
+            if (projectIndex == projects.length - 1 && projectIndex != 0) {
+              this.context
+                  .read<DashboardBloc>()
+                  .add(SetProjectEvent(projectIndex: projectIndex - 1));
               indexMinus = true;
             }
             this.context.read<DashboardBloc>().add(DelProjectEvent(
-                index: indexMinus ? _projectIndex + 1 : _projectIndex));
+                index: indexMinus ? projectIndex + 1 : projectIndex));
 
             Navigator.of(context).pop();
           },
@@ -256,5 +283,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
         },
       ),
     );
+  }
+
+  void _showChangeDialog(List<ProjectModel> projects, int projectIndex) {
+    TextEditingController controller = TextEditingController();
+    controller.text = projects[projectIndex].name;
+    showMacosAlertDialog(
+      context: context,
+      builder: (context) => MacosAlertDialog(
+        appIcon: const MacosIcon(
+          Icons.edit,
+          size: 32,
+        ),
+        title: Text(
+          'Change project',
+          style: MacosTheme.of(context)
+              .typography
+              .title2
+              .copyWith(fontWeight: FontWeight.bold),
+        ),
+        message: MacosTextField(
+          controller: controller,
+          placeholder: 'Project name',
+        ),
+        horizontalActions: false,
+        primaryButton: PushButton(
+          buttonSize: ButtonSize.large,
+          onPressed: () {
+            if (controller.text.trim().isNotEmpty) {
+              this.context.read<DashboardBloc>().add(
+                    ChangeProjectNameEvent(
+                      index: projectIndex,
+                      name: controller.text,
+                    ),
+                  );
+              Navigator.of(context).pop();
+            }
+          },
+          child: const Text('YES'),
+        ),
+        secondaryButton: PushButton(
+          buttonSize: ButtonSize.large,
+          isSecondary: true,
+          onPressed: Navigator.of(context).pop,
+          child: const Text('NO'),
+        ),
+      ),
+    );
+  }
+
+  void _addCard({
+    required int projectId,
+    required int categoryId,
+  }) {
+    context.read<DashboardBloc>().add(AddCardEvent(
+      note: 'item www',
+      projectId: projectId,
+      categoryId: categoryId,
+    ));
   }
 }
