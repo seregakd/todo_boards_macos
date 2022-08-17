@@ -64,7 +64,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         cards: state.cards1,
                         controller: controller1,
                         onTapAdd: () => _addCard(
-                          projectId: state.projectIndex,
+                          projectsIsEmpty: state.projects.isEmpty,
+                          projectId: state.projectKey,
                           categoryId: 0,
                         ),
                       ),
@@ -73,7 +74,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         cards: state.cards2,
                         controller: controller2,
                         onTapAdd: () => _addCard(
-                          projectId: state.projectIndex,
+                          projectsIsEmpty: state.projects.isEmpty,
+                          projectId: state.projectKey,
                           categoryId: 1,
                         ),
                       ),
@@ -82,7 +84,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         cards: state.cards3,
                         controller: controller3,
                         onTapAdd: () => _addCard(
-                          projectId: state.projectIndex,
+                          projectsIsEmpty: state.projects.isEmpty,
+                          projectId: state.projectKey,
                           categoryId: 2,
                         ),
                       ),
@@ -243,15 +246,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         primaryButton: PushButton(
           buttonSize: ButtonSize.large,
           onPressed: () {
-            bool indexMinus = false;
-            if (projectIndex == projects.length - 1 && projectIndex != 0) {
-              this.context
-                  .read<DashboardBloc>()
-                  .add(SetProjectEvent(projectIndex: projectIndex - 1));
-              indexMinus = true;
-            }
-            this.context.read<DashboardBloc>().add(DelProjectEvent(
-                index: indexMinus ? projectIndex + 1 : projectIndex));
+           this.context.read<DashboardBloc>().add(DelProjectEvent(
+                index: projectIndex));
 
             Navigator.of(context).pop();
           },
@@ -333,13 +329,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _addCard({
+    required bool projectsIsEmpty,
     required int projectId,
     required int categoryId,
   }) {
-    context.read<DashboardBloc>().add(AddCardEvent(
-      note: 'item www',
-      projectId: projectId,
-      categoryId: categoryId,
-    ));
+    if (!projectsIsEmpty) {
+      context.read<DashboardBloc>().add(AddCardEvent(
+        note: 'item www',
+        projectId: projectId,
+        categoryId: categoryId,
+      ));
+    }
   }
 }

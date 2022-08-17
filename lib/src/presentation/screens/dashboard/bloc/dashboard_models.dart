@@ -30,17 +30,29 @@ class DashboardScreenEvent with _$DashboardScreenEvent {
     required int projectId,
     required int categoryId,
   }) = AddCardEvent;
+
+  factory DashboardScreenEvent.delCard({
+    required int key,
+    required int categoryId,
+  }) = DelCardEvent;
+
+  factory DashboardScreenEvent.changeCard({
+    required int key,
+    required String note,
+    required int projectId,
+    required int categoryId,
+  }) = ChangeCardEvent;
 }
 
 @freezed
 class DashboardScreenState with _$DashboardScreenState {
   DashboardScreenStateData get data =>
       this as DashboardScreenStateData;
-
   const DashboardScreenState._();
 
   factory DashboardScreenState.data({
     @Default(0) int projectIndex,
+    @Default(0) int projectKey,
     @Default([]) List<ProjectModel> projects,
     @Default([]) List<CardModel> cards1,
     @Default([]) List<CardModel> cards2,

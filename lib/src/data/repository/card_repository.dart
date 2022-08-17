@@ -6,6 +6,14 @@ class CardRepository {
 
   CardRepository(this._cardDatabase);
 
+  Future<List<CardModel>> getCardsByProject({
+    required int projectId,
+  }) async {
+    return await _cardDatabase.getCardsByProject(
+      projectId: projectId,
+    );
+  }
+
   Future<List<CardModel>> getCardsByProjectAndCategory({
     required int projectId,
     required int categoryId,
@@ -28,11 +36,21 @@ class CardRepository {
     );
   }
 
-// Future<void> changeProjectName(int index, String name) async {
-//   await _cardDatabase.changeProjectName(index, name);
-// }
-//
-// Future<void> delProject(int index) async {
-//   await _cardDatabase.delProject(index);
-// }
+  Future<void> changeCard({
+    required int key,
+    required String note,
+    required int projectId,
+    required int categoryId,
+  }) async {
+    await _cardDatabase.changeCard(
+      key: key,
+      note: note,
+      projectId: projectId,
+      categoryId: categoryId,
+    );
+  }
+
+  Future<void> delCard(int key) async {
+    await _cardDatabase.delCard(key);
+  }
 }

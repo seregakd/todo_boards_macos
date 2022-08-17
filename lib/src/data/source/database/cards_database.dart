@@ -4,7 +4,7 @@ import 'package:todo_boards_macos/src/data/model/local/card_model.dart';
 class CardDatabase {
   final String boxName = "CardBox";
 
-  Future<List<CardModel>> getCardsByProject(int projectId) async {
+  Future<List<CardModel>> getCardsByProject({required int projectId}) async {
     var box = await _getBox();
     return box.values
         .where((element) => element.projectId == projectId)
@@ -20,7 +20,6 @@ class CardDatabase {
         .where((element) =>
             element.projectId == projectId && element.categoryId == categoryId)
         .toList();
-//    return box.values.toList();
   }
 
   Future<void> addCard({
@@ -37,15 +36,15 @@ class CardDatabase {
     ));
   }
 
-  Future<void> changeCard(
-    int index,
-    String note,
-    int projectId,
-    int categoryId,
-  ) async {
+  Future<void> changeCard({
+    required int key,
+    required String note,
+    required int projectId,
+    required int categoryId,
+  }) async {
     var box = await _getBox();
-    box.putAt(
-      index,
+    box.put(
+      key,
       CardModel(
         id: '',
         note: note,
@@ -55,14 +54,11 @@ class CardDatabase {
     );
   }
 
-  Future<void> delCard(
-    int index,
-    int projectId,
-    int categoryId,
-  ) async {
-    // var filteredUsers = userBox.values.where((user) => user.name.startsWith('s'));
+  Future<void> delCard(int key) async {
     var box = await _getBox();
-    box.deleteAt(index);
+    if (box.containsKey(key)) {
+      box.delete(key);
+    }
   }
 
   Future<Box<CardModel>> _getBox() async {

@@ -25,6 +25,10 @@ mixin _$DashboardScreenEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,9 @@ mixin _$DashboardScreenEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +52,9 @@ mixin _$DashboardScreenEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +66,8 @@ mixin _$DashboardScreenEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +78,8 @@ mixin _$DashboardScreenEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +90,8 @@ mixin _$DashboardScreenEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +162,10 @@ class _$GetInfoEvent implements GetInfoEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return getInfo();
   }
@@ -159,6 +179,9 @@ class _$GetInfoEvent implements GetInfoEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return getInfo?.call();
   }
@@ -172,6 +195,9 @@ class _$GetInfoEvent implements GetInfoEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (getInfo != null) {
@@ -189,6 +215,8 @@ class _$GetInfoEvent implements GetInfoEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return getInfo(this);
   }
@@ -202,6 +230,8 @@ class _$GetInfoEvent implements GetInfoEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return getInfo?.call(this);
   }
@@ -215,6 +245,8 @@ class _$GetInfoEvent implements GetInfoEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (getInfo != null) {
@@ -301,6 +333,10 @@ class _$SetProjectEvent implements SetProjectEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return setProject(projectIndex);
   }
@@ -314,6 +350,9 @@ class _$SetProjectEvent implements SetProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return setProject?.call(projectIndex);
   }
@@ -327,6 +366,9 @@ class _$SetProjectEvent implements SetProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (setProject != null) {
@@ -344,6 +386,8 @@ class _$SetProjectEvent implements SetProjectEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return setProject(this);
   }
@@ -357,6 +401,8 @@ class _$SetProjectEvent implements SetProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return setProject?.call(this);
   }
@@ -370,6 +416,8 @@ class _$SetProjectEvent implements SetProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (setProject != null) {
@@ -461,6 +509,10 @@ class _$AddProjectEvent implements AddProjectEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return addProject(name);
   }
@@ -474,6 +526,9 @@ class _$AddProjectEvent implements AddProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return addProject?.call(name);
   }
@@ -487,6 +542,9 @@ class _$AddProjectEvent implements AddProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (addProject != null) {
@@ -504,6 +562,8 @@ class _$AddProjectEvent implements AddProjectEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return addProject(this);
   }
@@ -517,6 +577,8 @@ class _$AddProjectEvent implements AddProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return addProject?.call(this);
   }
@@ -530,6 +592,8 @@ class _$AddProjectEvent implements AddProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (addProject != null) {
@@ -632,6 +696,10 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return changeProjectName(index, name);
   }
@@ -645,6 +713,9 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return changeProjectName?.call(index, name);
   }
@@ -658,6 +729,9 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (changeProjectName != null) {
@@ -675,6 +749,8 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return changeProjectName(this);
   }
@@ -688,6 +764,8 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return changeProjectName?.call(this);
   }
@@ -701,6 +779,8 @@ class _$ChangeProjectNameEvent implements ChangeProjectNameEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (changeProjectName != null) {
@@ -794,6 +874,10 @@ class _$DelProjectEvent implements DelProjectEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return delProject(index);
   }
@@ -807,6 +891,9 @@ class _$DelProjectEvent implements DelProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return delProject?.call(index);
   }
@@ -820,6 +907,9 @@ class _$DelProjectEvent implements DelProjectEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (delProject != null) {
@@ -837,6 +927,8 @@ class _$DelProjectEvent implements DelProjectEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return delProject(this);
   }
@@ -850,6 +942,8 @@ class _$DelProjectEvent implements DelProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return delProject?.call(this);
   }
@@ -863,6 +957,8 @@ class _$DelProjectEvent implements DelProjectEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (delProject != null) {
@@ -974,6 +1070,10 @@ class _$AddCardEvent implements AddCardEvent {
     required TResult Function(int index) delProject,
     required TResult Function(String note, int projectId, int categoryId)
         addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
   }) {
     return addCard(note, projectId, categoryId);
   }
@@ -987,6 +1087,9 @@ class _$AddCardEvent implements AddCardEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
   }) {
     return addCard?.call(note, projectId, categoryId);
   }
@@ -1000,6 +1103,9 @@ class _$AddCardEvent implements AddCardEvent {
     TResult Function(int index, String name)? changeProjectName,
     TResult Function(int index)? delProject,
     TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
     required TResult orElse(),
   }) {
     if (addCard != null) {
@@ -1017,6 +1123,8 @@ class _$AddCardEvent implements AddCardEvent {
     required TResult Function(ChangeProjectNameEvent value) changeProjectName,
     required TResult Function(DelProjectEvent value) delProject,
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
   }) {
     return addCard(this);
   }
@@ -1030,6 +1138,8 @@ class _$AddCardEvent implements AddCardEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
   }) {
     return addCard?.call(this);
   }
@@ -1043,6 +1153,8 @@ class _$AddCardEvent implements AddCardEvent {
     TResult Function(ChangeProjectNameEvent value)? changeProjectName,
     TResult Function(DelProjectEvent value)? delProject,
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
     required TResult orElse(),
   }) {
     if (addCard != null) {
@@ -1067,8 +1179,412 @@ abstract class AddCardEvent implements DashboardScreenEvent {
 }
 
 /// @nodoc
+abstract class _$$DelCardEventCopyWith<$Res> {
+  factory _$$DelCardEventCopyWith(
+          _$DelCardEvent value, $Res Function(_$DelCardEvent) then) =
+      __$$DelCardEventCopyWithImpl<$Res>;
+  $Res call({int key, int categoryId});
+}
+
+/// @nodoc
+class __$$DelCardEventCopyWithImpl<$Res>
+    extends _$DashboardScreenEventCopyWithImpl<$Res>
+    implements _$$DelCardEventCopyWith<$Res> {
+  __$$DelCardEventCopyWithImpl(
+      _$DelCardEvent _value, $Res Function(_$DelCardEvent) _then)
+      : super(_value, (v) => _then(v as _$DelCardEvent));
+
+  @override
+  _$DelCardEvent get _value => super._value as _$DelCardEvent;
+
+  @override
+  $Res call({
+    Object? key = freezed,
+    Object? categoryId = freezed,
+  }) {
+    return _then(_$DelCardEvent(
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as int,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DelCardEvent implements DelCardEvent {
+  _$DelCardEvent({required this.key, required this.categoryId});
+
+  @override
+  final int key;
+  @override
+  final int categoryId;
+
+  @override
+  String toString() {
+    return 'DashboardScreenEvent.delCard(key: $key, categoryId: $categoryId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DelCardEvent &&
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(categoryId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$DelCardEventCopyWith<_$DelCardEvent> get copyWith =>
+      __$$DelCardEventCopyWithImpl<_$DelCardEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getInfo,
+    required TResult Function(int projectIndex) setProject,
+    required TResult Function(String name) addProject,
+    required TResult Function(int index, String name) changeProjectName,
+    required TResult Function(int index) delProject,
+    required TResult Function(String note, int projectId, int categoryId)
+        addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
+  }) {
+    return delCard(key, categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getInfo,
+    TResult Function(int projectIndex)? setProject,
+    TResult Function(String name)? addProject,
+    TResult Function(int index, String name)? changeProjectName,
+    TResult Function(int index)? delProject,
+    TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
+  }) {
+    return delCard?.call(key, categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getInfo,
+    TResult Function(int projectIndex)? setProject,
+    TResult Function(String name)? addProject,
+    TResult Function(int index, String name)? changeProjectName,
+    TResult Function(int index)? delProject,
+    TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
+    required TResult orElse(),
+  }) {
+    if (delCard != null) {
+      return delCard(key, categoryId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetInfoEvent value) getInfo,
+    required TResult Function(SetProjectEvent value) setProject,
+    required TResult Function(AddProjectEvent value) addProject,
+    required TResult Function(ChangeProjectNameEvent value) changeProjectName,
+    required TResult Function(DelProjectEvent value) delProject,
+    required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
+  }) {
+    return delCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetInfoEvent value)? getInfo,
+    TResult Function(SetProjectEvent value)? setProject,
+    TResult Function(AddProjectEvent value)? addProject,
+    TResult Function(ChangeProjectNameEvent value)? changeProjectName,
+    TResult Function(DelProjectEvent value)? delProject,
+    TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
+  }) {
+    return delCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetInfoEvent value)? getInfo,
+    TResult Function(SetProjectEvent value)? setProject,
+    TResult Function(AddProjectEvent value)? addProject,
+    TResult Function(ChangeProjectNameEvent value)? changeProjectName,
+    TResult Function(DelProjectEvent value)? delProject,
+    TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
+    required TResult orElse(),
+  }) {
+    if (delCard != null) {
+      return delCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DelCardEvent implements DashboardScreenEvent {
+  factory DelCardEvent(
+      {required final int key, required final int categoryId}) = _$DelCardEvent;
+
+  int get key;
+  int get categoryId;
+  @JsonKey(ignore: true)
+  _$$DelCardEventCopyWith<_$DelCardEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeCardEventCopyWith<$Res> {
+  factory _$$ChangeCardEventCopyWith(
+          _$ChangeCardEvent value, $Res Function(_$ChangeCardEvent) then) =
+      __$$ChangeCardEventCopyWithImpl<$Res>;
+  $Res call({int key, String note, int projectId, int categoryId});
+}
+
+/// @nodoc
+class __$$ChangeCardEventCopyWithImpl<$Res>
+    extends _$DashboardScreenEventCopyWithImpl<$Res>
+    implements _$$ChangeCardEventCopyWith<$Res> {
+  __$$ChangeCardEventCopyWithImpl(
+      _$ChangeCardEvent _value, $Res Function(_$ChangeCardEvent) _then)
+      : super(_value, (v) => _then(v as _$ChangeCardEvent));
+
+  @override
+  _$ChangeCardEvent get _value => super._value as _$ChangeCardEvent;
+
+  @override
+  $Res call({
+    Object? key = freezed,
+    Object? note = freezed,
+    Object? projectId = freezed,
+    Object? categoryId = freezed,
+  }) {
+    return _then(_$ChangeCardEvent(
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectId: projectId == freezed
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeCardEvent implements ChangeCardEvent {
+  _$ChangeCardEvent(
+      {required this.key,
+      required this.note,
+      required this.projectId,
+      required this.categoryId});
+
+  @override
+  final int key;
+  @override
+  final String note;
+  @override
+  final int projectId;
+  @override
+  final int categoryId;
+
+  @override
+  String toString() {
+    return 'DashboardScreenEvent.changeCard(key: $key, note: $note, projectId: $projectId, categoryId: $categoryId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeCardEvent &&
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality().equals(other.note, note) &&
+            const DeepCollectionEquality().equals(other.projectId, projectId) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(note),
+      const DeepCollectionEquality().hash(projectId),
+      const DeepCollectionEquality().hash(categoryId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ChangeCardEventCopyWith<_$ChangeCardEvent> get copyWith =>
+      __$$ChangeCardEventCopyWithImpl<_$ChangeCardEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getInfo,
+    required TResult Function(int projectIndex) setProject,
+    required TResult Function(String name) addProject,
+    required TResult Function(int index, String name) changeProjectName,
+    required TResult Function(int index) delProject,
+    required TResult Function(String note, int projectId, int categoryId)
+        addCard,
+    required TResult Function(int key, int categoryId) delCard,
+    required TResult Function(
+            int key, String note, int projectId, int categoryId)
+        changeCard,
+  }) {
+    return changeCard(key, note, projectId, categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getInfo,
+    TResult Function(int projectIndex)? setProject,
+    TResult Function(String name)? addProject,
+    TResult Function(int index, String name)? changeProjectName,
+    TResult Function(int index)? delProject,
+    TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
+  }) {
+    return changeCard?.call(key, note, projectId, categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getInfo,
+    TResult Function(int projectIndex)? setProject,
+    TResult Function(String name)? addProject,
+    TResult Function(int index, String name)? changeProjectName,
+    TResult Function(int index)? delProject,
+    TResult Function(String note, int projectId, int categoryId)? addCard,
+    TResult Function(int key, int categoryId)? delCard,
+    TResult Function(int key, String note, int projectId, int categoryId)?
+        changeCard,
+    required TResult orElse(),
+  }) {
+    if (changeCard != null) {
+      return changeCard(key, note, projectId, categoryId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetInfoEvent value) getInfo,
+    required TResult Function(SetProjectEvent value) setProject,
+    required TResult Function(AddProjectEvent value) addProject,
+    required TResult Function(ChangeProjectNameEvent value) changeProjectName,
+    required TResult Function(DelProjectEvent value) delProject,
+    required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(DelCardEvent value) delCard,
+    required TResult Function(ChangeCardEvent value) changeCard,
+  }) {
+    return changeCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetInfoEvent value)? getInfo,
+    TResult Function(SetProjectEvent value)? setProject,
+    TResult Function(AddProjectEvent value)? addProject,
+    TResult Function(ChangeProjectNameEvent value)? changeProjectName,
+    TResult Function(DelProjectEvent value)? delProject,
+    TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
+  }) {
+    return changeCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetInfoEvent value)? getInfo,
+    TResult Function(SetProjectEvent value)? setProject,
+    TResult Function(AddProjectEvent value)? addProject,
+    TResult Function(ChangeProjectNameEvent value)? changeProjectName,
+    TResult Function(DelProjectEvent value)? delProject,
+    TResult Function(AddCardEvent value)? addCard,
+    TResult Function(DelCardEvent value)? delCard,
+    TResult Function(ChangeCardEvent value)? changeCard,
+    required TResult orElse(),
+  }) {
+    if (changeCard != null) {
+      return changeCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeCardEvent implements DashboardScreenEvent {
+  factory ChangeCardEvent(
+      {required final int key,
+      required final String note,
+      required final int projectId,
+      required final int categoryId}) = _$ChangeCardEvent;
+
+  int get key;
+  String get note;
+  int get projectId;
+  int get categoryId;
+  @JsonKey(ignore: true)
+  _$$ChangeCardEventCopyWith<_$ChangeCardEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DashboardScreenState {
   int get projectIndex => throw _privateConstructorUsedError;
+  int get projectKey => throw _privateConstructorUsedError;
   List<ProjectModel> get projects => throw _privateConstructorUsedError;
   List<CardModel> get cards1 => throw _privateConstructorUsedError;
   List<CardModel> get cards2 => throw _privateConstructorUsedError;
@@ -1077,6 +1593,7 @@ mixin _$DashboardScreenState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
@@ -1088,6 +1605,7 @@ mixin _$DashboardScreenState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
@@ -1099,6 +1617,7 @@ mixin _$DashboardScreenState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
@@ -1136,6 +1655,7 @@ abstract class $DashboardScreenStateCopyWith<$Res> {
       _$DashboardScreenStateCopyWithImpl<$Res>;
   $Res call(
       {int projectIndex,
+      int projectKey,
       List<ProjectModel> projects,
       List<CardModel> cards1,
       List<CardModel> cards2,
@@ -1154,6 +1674,7 @@ class _$DashboardScreenStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projectIndex = freezed,
+    Object? projectKey = freezed,
     Object? projects = freezed,
     Object? cards1 = freezed,
     Object? cards2 = freezed,
@@ -1163,6 +1684,10 @@ class _$DashboardScreenStateCopyWithImpl<$Res>
       projectIndex: projectIndex == freezed
           ? _value.projectIndex
           : projectIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectKey: projectKey == freezed
+          ? _value.projectKey
+          : projectKey // ignore: cast_nullable_to_non_nullable
               as int,
       projects: projects == freezed
           ? _value.projects
@@ -1193,6 +1718,7 @@ abstract class _$$DashboardScreenStateDataCopyWith<$Res>
   @override
   $Res call(
       {int projectIndex,
+      int projectKey,
       List<ProjectModel> projects,
       List<CardModel> cards1,
       List<CardModel> cards2,
@@ -1214,6 +1740,7 @@ class __$$DashboardScreenStateDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projectIndex = freezed,
+    Object? projectKey = freezed,
     Object? projects = freezed,
     Object? cards1 = freezed,
     Object? cards2 = freezed,
@@ -1223,6 +1750,10 @@ class __$$DashboardScreenStateDataCopyWithImpl<$Res>
       projectIndex: projectIndex == freezed
           ? _value.projectIndex
           : projectIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectKey: projectKey == freezed
+          ? _value.projectKey
+          : projectKey // ignore: cast_nullable_to_non_nullable
               as int,
       projects: projects == freezed
           ? _value._projects
@@ -1249,6 +1780,7 @@ class __$$DashboardScreenStateDataCopyWithImpl<$Res>
 class _$DashboardScreenStateData extends DashboardScreenStateData {
   _$DashboardScreenStateData(
       {this.projectIndex = 0,
+      this.projectKey = 0,
       final List<ProjectModel> projects = const [],
       final List<CardModel> cards1 = const [],
       final List<CardModel> cards2 = const [],
@@ -1262,6 +1794,9 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
   @override
   @JsonKey()
   final int projectIndex;
+  @override
+  @JsonKey()
+  final int projectKey;
   final List<ProjectModel> _projects;
   @override
   @JsonKey()
@@ -1296,7 +1831,7 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
 
   @override
   String toString() {
-    return 'DashboardScreenState.data(projectIndex: $projectIndex, projects: $projects, cards1: $cards1, cards2: $cards2, cards3: $cards3)';
+    return 'DashboardScreenState.data(projectIndex: $projectIndex, projectKey: $projectKey, projects: $projects, cards1: $cards1, cards2: $cards2, cards3: $cards3)';
   }
 
   @override
@@ -1306,6 +1841,8 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
             other is _$DashboardScreenStateData &&
             const DeepCollectionEquality()
                 .equals(other.projectIndex, projectIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.projectKey, projectKey) &&
             const DeepCollectionEquality().equals(other._projects, _projects) &&
             const DeepCollectionEquality().equals(other._cards1, _cards1) &&
             const DeepCollectionEquality().equals(other._cards2, _cards2) &&
@@ -1316,6 +1853,7 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(projectIndex),
+      const DeepCollectionEquality().hash(projectKey),
       const DeepCollectionEquality().hash(_projects),
       const DeepCollectionEquality().hash(_cards1),
       const DeepCollectionEquality().hash(_cards2),
@@ -1333,13 +1871,14 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
             List<CardModel> cards3)
         data,
   }) {
-    return data(projectIndex, projects, cards1, cards2, cards3);
+    return data(projectIndex, projectKey, projects, cards1, cards2, cards3);
   }
 
   @override
@@ -1347,13 +1886,15 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
             List<CardModel> cards3)?
         data,
   }) {
-    return data?.call(projectIndex, projects, cards1, cards2, cards3);
+    return data?.call(
+        projectIndex, projectKey, projects, cards1, cards2, cards3);
   }
 
   @override
@@ -1361,6 +1902,7 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int projectIndex,
+            int projectKey,
             List<ProjectModel> projects,
             List<CardModel> cards1,
             List<CardModel> cards2,
@@ -1369,7 +1911,7 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(projectIndex, projects, cards1, cards2, cards3);
+      return data(projectIndex, projectKey, projects, cards1, cards2, cards3);
     }
     return orElse();
   }
@@ -1406,6 +1948,7 @@ class _$DashboardScreenStateData extends DashboardScreenStateData {
 abstract class DashboardScreenStateData extends DashboardScreenState {
   factory DashboardScreenStateData(
       {final int projectIndex,
+      final int projectKey,
       final List<ProjectModel> projects,
       final List<CardModel> cards1,
       final List<CardModel> cards2,
@@ -1414,6 +1957,8 @@ abstract class DashboardScreenStateData extends DashboardScreenState {
 
   @override
   int get projectIndex;
+  @override
+  int get projectKey;
   @override
   List<ProjectModel> get projects;
   @override
