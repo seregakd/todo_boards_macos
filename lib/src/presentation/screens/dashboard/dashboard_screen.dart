@@ -7,6 +7,7 @@ import 'bloc/dashboard_bloc.dart';
 import 'bloc/dashboard_models.dart';
 import 'widgets/add_project_widget.dart';
 import 'widgets/card_item.dart';
+import 'widgets/dialogs.dart';
 import 'widgets/list_cards.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -60,31 +61,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   return Row(
                     children: [
                       ListCards(
+                        context: this.context,
                         title: 'TODO',
                         cards: state.cards1,
                         controller: controller1,
+                        categoryIndex: 0,
+                        projectId: state.projectKey,
                         onTapAdd: () => _addCard(
-                          projectsIsEmpty: state.projects.isEmpty,
                           projectId: state.projectKey,
                           categoryId: 0,
                         ),
+              //          onCardTapDel: () {},
                       ),
                       ListCards(
+                        context: this.context,
                         title: 'IN PROGRESS',
                         cards: state.cards2,
                         controller: controller2,
+                        categoryIndex: 1,
+                        projectId: state.projectKey,
                         onTapAdd: () => _addCard(
-                          projectsIsEmpty: state.projects.isEmpty,
                           projectId: state.projectKey,
                           categoryId: 1,
                         ),
                       ),
                       ListCards(
+                        context: this.context,
                         title: 'DONE',
                         cards: state.cards3,
                         controller: controller3,
+                        categoryIndex: 2,
+                        projectId: state.projectKey,
                         onTapAdd: () => _addCard(
-                          projectsIsEmpty: state.projects.isEmpty,
                           projectId: state.projectKey,
                           categoryId: 2,
                         ),
@@ -129,7 +137,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           currentIndex: projectIndex,
           scrollController: scrollController,
           onChanged: (index) {
-            this.context
+            this
+                .context
                 .read<DashboardBloc>()
                 .add(SetProjectEvent(projectIndex: index));
           },
@@ -139,7 +148,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 leading: const MacosIcon(CupertinoIcons.home),
                 label: Row(
                   children: [
-                    Text(projects[i].name),
+                    SizedBox(
+                      width: 120,
+                      child: Text(
+                        projects[i].name,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                     const SizedBox(
                       width: 16,
                     ),
@@ -224,42 +239,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _showDelDialog(List<ProjectModel> projects, int projectIndex) {
-    showMacosAlertDialog(
+    Dialogs.showTextDialog(
       context: context,
-      builder: (context) => MacosAlertDialog(
-        appIcon: const MacosIcon(
-          CupertinoIcons.trash,
-          size: 32,
-        ),
-        title: Text(
-          'Warning',
-          style: MacosTheme.of(context)
-              .typography
-              .title2
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        message: Text(
-          'Do you want to delete project ${projects[projectIndex].name} with all tasks?',
-          textAlign: TextAlign.center,
-        ),
-        horizontalActions: false,
-        primaryButton: PushButton(
-          buttonSize: ButtonSize.large,
-          onPressed: () {
-           this.context.read<DashboardBloc>().add(DelProjectEvent(
-                index: projectIndex));
-
-            Navigator.of(context).pop();
-          },
-          child: const Text('YES'),
-        ),
-        secondaryButton: PushButton(
-          buttonSize: ButtonSize.large,
-          isSecondary: true,
-          onPressed: Navigator.of(context).pop,
-          child: const Text('NO'),
-        ),
+      icon: const MacosIcon(
+        CupertinoIcons.trash,
+        size: 32,
       ),
+      title: 'Warning',
+      message:
+          'Do you want to delete project ${projects[projectIndex].name} with all tasks?',
+      onTapYes: () {
+        context.read<DashboardBloc>().add(DelProjectEvent(index: projectIndex));
+
+        Navigator.of(context).pop();
+      },
     );
   }
 
@@ -284,61 +277,57 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void _showChangeDialog(List<ProjectModel> projects, int projectIndex) {
     TextEditingController controller = TextEditingController();
     controller.text = projects[projectIndex].name;
-    showMacosAlertDialog(
+
+    Dialogs.showEditTextDialog(
       context: context,
-      builder: (context) => MacosAlertDialog(
-        appIcon: const MacosIcon(
-          Icons.edit,
-          size: 32,
-        ),
-        title: Text(
-          'Change project',
-          style: MacosTheme.of(context)
-              .typography
-              .title2
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        message: MacosTextField(
-          controller: controller,
-          placeholder: 'Project name',
-        ),
-        horizontalActions: false,
-        primaryButton: PushButton(
-          buttonSize: ButtonSize.large,
-          onPressed: () {
-            if (controller.text.trim().isNotEmpty) {
-              this.context.read<DashboardBloc>().add(
-                    ChangeProjectNameEvent(
-                      index: projectIndex,
-                      name: controller.text,
-                    ),
-                  );
-              Navigator.of(context).pop();
-            }
-          },
-          child: const Text('YES'),
-        ),
-        secondaryButton: PushButton(
-          buttonSize: ButtonSize.large,
-          isSecondary: true,
-          onPressed: Navigator.of(context).pop,
-          child: const Text('NO'),
-        ),
+      icon: const MacosIcon(
+        Icons.edit,
+        size: 32,
       ),
+      title: 'Change project',
+      placeholder: 'Project name',
+      controller: controller,
+      onTapYes: () {
+        if (controller.text.trim().isNotEmpty) {
+          this.context.read<DashboardBloc>().add(
+            ChangeProjectNameEvent(
+              index: projectIndex,
+              name: controller.text,
+            ),
+          );
+          Navigator.of(context).pop();
+        }
+      },
     );
   }
 
   void _addCard({
-    required bool projectsIsEmpty,
     required int projectId,
     required int categoryId,
   }) {
-    if (!projectsIsEmpty) {
-      context.read<DashboardBloc>().add(AddCardEvent(
-        note: 'item www',
-        projectId: projectId,
-        categoryId: categoryId,
-      ));
-    }
+    TextEditingController controller = TextEditingController();
+
+    Dialogs.showEditTextDialog(
+      context: context,
+      icon: const MacosIcon(
+        Icons.add,
+        size: 32,
+      ),
+      title: 'Create new card',
+      placeholder: 'Card name',
+      controller: controller,
+      onTapYes: () {
+        if (controller.text.isNotEmpty) {
+          context.read<DashboardBloc>().add(AddCardEvent(
+            note: controller.text,
+            projectId: projectId,
+            categoryId: categoryId,
+          ));
+
+          Navigator.of(context).pop();
+        }
+      },
+    );
   }
+
 }
