@@ -46,3 +46,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /macos/Podfile.lock
+
+# instaliers
+/installers/dmg_creator/todo_boards.dmg
